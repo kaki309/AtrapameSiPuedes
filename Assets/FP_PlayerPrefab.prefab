@@ -120,7 +120,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8247538508218300319}
   - component: {fileID: 1527362265574357811}
-  - component: {fileID: 4174795352088369901}
   - component: {fileID: 8369823585783519008}
   m_Layer: 0
   m_Name: FP_Player
@@ -174,29 +173,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!136 &4174795352088369901
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487226068837436984}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8369823585783519008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1037202129687777546}
-  moveSpeed: 7
-  groundDrag: 5
+  moveSpeed: 9
+  groundDrag: 8
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -349,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aad98ac7b21cf7459729e1108a1148c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 400
-  sensY: 400
+  sensX: 350
+  sensY: 350
   orientation: {fileID: 1037202129687777546}
 --- !u!20 &1476505293760593483
 Camera:
@@ -466,6 +442,7 @@ GameObject:
   - component: {fileID: 3247971236542019380}
   - component: {fileID: 4430014103913740318}
   - component: {fileID: 35004175624271728}
+  - component: {fileID: 182860993687220411}
   m_Layer: 0
   m_Name: Obj
   m_TagString: Untagged
@@ -539,6 +516,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8658987566056189962}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &182860993687220411
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8658987566056189962}
+  m_Material: {fileID: 13400000, guid: 15615ec8d879e134680980b72e6c369f, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9027469751490731905
 GameObject:
   m_ObjectHideFlags: 0

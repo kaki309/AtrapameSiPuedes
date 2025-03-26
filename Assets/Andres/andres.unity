@@ -17812,8 +17812,8 @@ Transform:
   m_GameObject: {fileID: 979791675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -2.51, z: 15.7}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 1, y: -3.74, z: 15.7}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1172761152}
@@ -34795,11 +34795,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TP_PlayerPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188873752021866952, guid: 0ba5373c4933d6745bc237e31296faa2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
