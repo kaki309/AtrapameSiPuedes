@@ -1,20 +1,19 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ThirdPersonController : MonoBehaviour
+public class PlayerMovement: MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] Transform orientation;
 
     [Header("Movement")]
+    float horizontalInput;
+    float verticalInput;
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
     [SerializeField] float airMultiplier;
-
-    float horizontalInput;
-    float verticalInput;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
@@ -33,7 +32,7 @@ public class ThirdPersonController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        //Check Ground
+        // Check Ground
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight/2 + 0.2f, whatIsGround);
         //Debug.DrawRay(transform.position, Vector3.down * (playerHeight/2 + 0.2f), Color.red);
 
@@ -43,10 +42,10 @@ public class ThirdPersonController : MonoBehaviour
         else
             rb.drag=0;
         
-        //Limit Speed
+        // Limit Speed
         speedControl();
 
-        //Jump
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space)) jump();
     }
     void FixedUpdate()
@@ -78,7 +77,6 @@ public class ThirdPersonController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             Invoke(nameof(resetJump), jumpCooldown);
         }
-        
     }
     void resetJump(){
         readyToJump = true;
