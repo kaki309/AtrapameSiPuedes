@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
@@ -29,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float superJumpCooldown = 20f;
     bool canActivateSuperJump = false;
     bool isSuperJumpActive = false;
-    float superJumpTimer = 0f;
-    float superJumpCooldownTimer = 0f;
+    protected float superJumpTimer = 0f;
+    protected float superJumpCooldownTimer = 0f;
 
     void Start()
     {
@@ -112,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
             if (superJumpCooldownTimer >= superJumpCooldown)
             {
                 canActivateSuperJump = true;
-                superJumpCooldownTimer = 0f;
             }
         }
 
@@ -134,12 +132,13 @@ public class PlayerMovement : MonoBehaviour
     void ActivateSuperJump()
     {
         isSuperJumpActive = true;
-        canActivateSuperJump = false;
         superJumpTimer = 0f;
     }
 
     void DeactivateSuperJump()
     {
+        canActivateSuperJump = false;
         isSuperJumpActive = false;
+        superJumpCooldownTimer = 0f;
     }
 }
