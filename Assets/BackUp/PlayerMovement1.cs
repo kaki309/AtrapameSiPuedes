@@ -1,12 +1,11 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; // Añadido para usar Slider
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement1 : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] Transform orientation;
-    public TMP_Text debugText;
+    public TMP_Text texto;
 
     [Header("Movement")]
     float horizontalInput;
@@ -16,15 +15,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
     [SerializeField] float airMultiplier;
-
-    // Nuevas variables para correr
-    [Header("Sprint")]
-    [SerializeField] float sprintMultiplier = 1.5f;
-    [SerializeField] float sprintDuration = 8f;
-    [SerializeField] Slider energySlider;
-    private float currentEnergy = 100f;
-    private bool isSprinting = false;
-    private float baseSpeed;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
@@ -44,14 +34,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        baseSpeed = moveSpeed;
-        
-        // Inicializar slider de energía
-        if (energySlider != null)
-        {
-            energySlider.maxValue = 100f;
-            energySlider.value = currentEnergy;
-        }
     }
 
     void Update()
@@ -72,10 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Powers
         HandleSuperJump();
-        HandleSprint();
 
         // Debug
-        if (debugText != null) debugText.text = $"Tiempo cooldown:{superJumpCooldownTimer:F1}\nTiempo activo:{superJumpTimer:F1}\nEnergía:{currentEnergy:F1}%";
+        texto.text = $"Tiempo cooldown:{superJumpCooldownTimer}\nTiempo activo:{superJumpTimer}";
     }
 
     void FixedUpdate()
@@ -97,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if (flatVel.magnitude > moveSpeed){
+        if (flatVel.magnitude > moveSpeed)
+        {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
@@ -158,54 +140,5 @@ public class PlayerMovement : MonoBehaviour
         canActivateSuperJump = false;
         isSuperJumpActive = false;
         superJumpCooldownTimer = 0f;
-    }
-
-    // Nuevo método para manejar la funcionalidad de sprint
-    void HandleSprint()
-    {
-        // Verificar si el jugador está intentando correr (presionando Shift)
-        bool tryingToSprint = Input.GetKey(KeyCode.LeftShift);
-        
-        // Si el jugador intenta correr y tiene energía
-        if (tryingToSprint && currentEnergy > 0)
-        {
-            // Activar sprint si no estaba activo
-            if (!isSprinting)
-            {
-                isSprinting = true;
-                moveSpeed = baseSpeed * sprintMultiplier;
-            }
-            
-            // Reducir energía mientras corre
-            currentEnergy -= (100f / sprintDuration) * Time.deltaTime;
-            
-            // Limitar la energía a 0 como mínimo
-            if (currentEnergy < 0)
-                currentEnergy = 0;
-        }
-        // Si el jugador deja de correr o se queda sin energía
-        else if (isSprinting)
-        {
-            // Desactivar sprint
-            isSprinting = false;
-            moveSpeed = baseSpeed;
-        }
-        
-        // Regenerar energía cuando no está corriendo
-        if (!isSprinting && currentEnergy < 100f)
-        {
-            // Regenerar energía
-            currentEnergy += (100f / (sprintDuration * 1.5f)) * Time.deltaTime;
-            
-            // Limitar la energía a 100 como máximo
-            if (currentEnergy > 100f)
-                currentEnergy = 100f;
-        }
-        
-        // Actualizar el slider de energía
-        if (energySlider != null)
-        {
-            energySlider.value = currentEnergy;
-        }
     }
 }
