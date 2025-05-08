@@ -2,10 +2,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI; // Añadido para usar Slider
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement1 : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] Transform orientation;
+    [SerializeField] Transform playerObj;
     public TMP_Text debugText;
 
     [Header("Movement")]
@@ -75,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         HandleSprint();
 
         // Debug
-        if (debugText != null) debugText.text = $"Tiempo cooldown:{superJumpCooldownTimer:F1}\nTiempo activo:{superJumpTimer:F1}\nEnergía:{currentEnergy:F1}%";
+        if (debugText != null) debugText.text = $"Salto cooldown:{superJumpCooldownTimer:F1} Salto tActivo:{superJumpTimer:F1} Energía:{currentEnergy:F1}%";
     }
 
     void FixedUpdate()
@@ -86,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
     void move()
     {
         Vector3 moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        if (playerObj!=null) playerObj.rotation = orientation.rotation;
 
         if (isGrounded)
             rb.AddForce(moveDir.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -203,6 +205,22 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // Actualizar el slider de energía
+        if (energySlider != null)
+        {
+            energySlider.value = currentEnergy;
+        }
+    }
+
+    public void RestoreEnergy(float amount)
+    {
+        // Añadir la cantidad de energía
+        currentEnergy += amount;
+        
+        // Limitar a máximo 100
+        if (currentEnergy > 100f)
+            currentEnergy = 100f;
+            
+        // Actualizar slider
         if (energySlider != null)
         {
             energySlider.value = currentEnergy;

@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3204358290735179687}
   m_Layer: 0
-  m_Name: cameraPos
+  m_Name: camPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,12 +57,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5312993204448725450}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.452, z: 0.351}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.45200002, z: 0.351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8247538508218300319}
+  m_Father: {fileID: 3247971236542019380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5366527083464212884
 GameObject:
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f76de38286b774b9b427ae2b4622b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 3204358290735179687}
+  playerCamPosition: {fileID: 3204358290735179687}
 --- !u!1 &5487226068837436984
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,6 @@ Transform:
   m_Children:
   - {fileID: 3247971236542019380}
   - {fileID: 1037202129687777546}
-  - {fileID: 3204358290735179687}
   m_Father: {fileID: 3530508464737480476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1527362265574357811
@@ -186,7 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1037202129687777546}
-  texto: {fileID: 0}
+  playerObj: {fileID: 3247971236542019380}
+  debugText: {fileID: 0}
   moveSpeed: 9
   groundDrag: 8
   jumpForce: 12
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 6028983760874118097}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -451,8 +451,8 @@ GameObject:
   - component: {fileID: 35004175624271728}
   - component: {fileID: 182860993687220411}
   m_Layer: 0
-  m_Name: Obj
-  m_TagString: Untagged
+  m_Name: Obj (Player Tag)
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -471,6 +471,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9112413954027893375}
+  - {fileID: 3204358290735179687}
   m_Father: {fileID: 8247538508218300319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &4430014103913740318
