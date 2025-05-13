@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
-    [SerializeField] LayerMask whatIsGround;
     bool isGrounded;
     bool readyToJump = true;
 
@@ -60,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, whatIsGround);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f);
 
         if (isGrounded)
             rb.drag = groundDrag;
@@ -134,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (canActivateSuperJump && Input.GetKeyDown(KeyCode.E))
+        if (canActivateSuperJump && Input.GetKeyDown(KeyCode.E) && !isSuperJumpActive)
         {
             ActivateSuperJump();
         }
