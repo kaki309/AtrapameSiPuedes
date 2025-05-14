@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     protected float superJumpTimer = 0f;
     protected float superJumpCooldownTimer = 0f;
 
+    public Animator anim;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -76,6 +78,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Debug
         if (debugText != null) debugText.text = $"Salto cooldown:{superJumpCooldownTimer:F1} Salto tActivo:{superJumpTimer:F1} Energía:{currentEnergy:F1}%";
+        // --- ANIMACIONES --- //
+        float speed = new Vector2(horizontalInput, verticalInput).magnitude;
+        anim.SetFloat("Speed", speed);
+
+        anim.SetBool("IsJumping", !isGrounded); // True si está en el aire
+
+        if (Input.GetKeyDown(KeyCode.K)) // Puedes cambiar la tecla
+        {
+            anim.SetTrigger("Die");
+        }
     }
 
     void FixedUpdate()
