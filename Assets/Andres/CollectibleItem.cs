@@ -25,10 +25,10 @@ public class CollectibleItem : MonoBehaviour
         isCollected = true;
 
         // Notificar al sistema de UI
-        PowerupManager powerupManager = FindObjectOfType<PowerupManager>();
-        if (powerupManager != null)
+        UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
+        if (uiNotificationManager != null)
         {
-            powerupManager.NotifyPowerupCollected(uiText);
+            uiNotificationManager.NotifyEventOnGame(uiText);
         }
 
         // Si existe audio, esperar mientras reproduce

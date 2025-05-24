@@ -9,6 +9,7 @@ public class EnergyCarrot : MonoBehaviour
     [SerializeField] private float bobHeight = 0.3f; // Altura del movimiento vertical
     [SerializeField] private ParticleSystem collectEffect; // Efecto de partículas al recoger
     [SerializeField] private AudioClip collectSound; // Sonido al recoger
+    [SerializeField] private string uiText;
 
     private Vector3 startPosition;
     private float bobTime;
@@ -25,7 +26,7 @@ public class EnergyCarrot : MonoBehaviour
     {
         // Rotación continua para efecto visual
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-        
+
         // Efecto de movimiento vertical (bob)
         bobTime += Time.deltaTime * bobSpeed;
         float newY = startPosition.y + Mathf.Sin(bobTime) * bobHeight;
@@ -38,22 +39,23 @@ public class EnergyCarrot : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-            
+
             if (playerMovement != null)
             {
                 // Restaurar energía del jugador
                 playerMovement.RestoreEnergy(energyRestoreAmount);
-                
-                // Notificar al PowerupManager
-                PowerupManager powerupManager = FindObjectOfType<PowerupManager>();
-                if (powerupManager != null)
+
+                // Notificación en la UI
+
+                UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
+                if (uiNotificationManager != null)
                 {
-                    powerupManager.NotifyPowerupCollected("¡Zanahoria Energética recogida!");
+                    uiNotificationManager.NotifyEventOnGame(uiText);
                 }
-                
+
                 // Reproducir efectos
                 PlayCollectEffects();
-                
+
                 // Destruir la zanahoria
                 Destroy(gameObject);
                 //Debug.Log("Zanahoria destruida");
@@ -68,11 +70,11 @@ public class EnergyCarrot : MonoBehaviour
         {
             ParticleSystem effect = Instantiate(collectEffect, transform.position, Quaternion.identity);
             effect.Play();
-            
+
             // Destruir el sistema de partículas cuando termine
             Destroy(effect.gameObject, effect.main.duration + 0.5f);
         }
-        
+
         // Reproducir sonido
         if (collectSound != null)
         {

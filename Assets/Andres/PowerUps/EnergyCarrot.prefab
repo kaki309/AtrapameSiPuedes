@@ -76,6 +76,7 @@ MonoBehaviour:
   collectEffect: {fileID: 8257781957906410801, guid: edb7494a335f6a84d957fda89a7a14e8,
     type: 3}
   collectSound: {fileID: 0}
+  uiText: "\xA1Energ\xEDa restaurada al 100%!"
 --- !u!1 &8083102528822769336
 GameObject:
   m_ObjectHideFlags: 0

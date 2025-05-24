@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HideZone : MonoBehaviour
 {
-    public Transform hideCamTransform; // Asigna el objeto vacío aquí
+    [SerializeField] Transform hideCamTransform; // Asigna el objeto vacío aquí
     private bool playerInZone = false;
     private bool isHidden = false;
     private GameObject player;
@@ -50,7 +50,9 @@ public class HideZone : MonoBehaviour
     void ToggleHide()
     {
         isHidden = !isHidden;
-        player.SetActive(!isHidden); // Desactivar o activar el jugador
+
+        HideZoneTask hideTask = player.GetComponent<HideZoneTask>();
+        if (hideTask) hideTask.completeTask();
 
         if (playerCamera != null)
         {
@@ -63,5 +65,6 @@ public class HideZone : MonoBehaviour
 
         if (floatingInteractionCanvas) floatingInteractionCanvas.SetActive(!isHidden);
 
+        player.SetActive(!isHidden); // Desactivar o activar el jugador
     }
 }

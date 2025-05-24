@@ -11,7 +11,7 @@ public class InteractionPrompt : MonoBehaviour
         if (floatingInteractionCanvas != null)
         {
             floatingInteractionCanvas.SetActive(false);
-            TMP_Text floatingText = floatingInteractionCanvas.transform.GetChild(0).GetComponent<TMP_Text>();
+            TMP_Text floatingText = floatingInteractionCanvas.GetComponentInChildren<TMP_Text>();
             floatingText.text = interactionText;
         }
     }
