@@ -9,7 +9,13 @@ public class HideZone : MonoBehaviour
     private PlayerMovement playerMovementScript; // Referencia al script que quieres desactivar
 
     private FPCamMovement playerCamera;
+    private GameObject floatingInteractionCanvas;
 
+    void Start()
+    {
+        floatingInteractionCanvas = gameObject.GetComponentInChildren<InteractionFloatingText>(true).gameObject;
+        Debug.Log(floatingInteractionCanvas.name);
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -54,6 +60,8 @@ public class HideZone : MonoBehaviour
         {
             playerMovementScript.enabled = !isHidden;
         }
+
+        if (floatingInteractionCanvas) floatingInteractionCanvas.SetActive(!isHidden);
 
     }
 }

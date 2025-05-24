@@ -121,7 +121,7 @@ public class PowerupManager : MonoBehaviour
             if (canSpawn)
             {
                 Instantiate(energyCarrotPrefab, spawnPoint.position, Quaternion.identity);
-                Debug.Log("¡Zanahoria energética generada!");
+                //Debug.Log("¡Zanahoria energética generada!");
             }
         }
     }

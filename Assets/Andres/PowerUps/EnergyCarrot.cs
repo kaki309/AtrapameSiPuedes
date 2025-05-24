@@ -56,7 +56,7 @@ public class EnergyCarrot : MonoBehaviour
                 
                 // Destruir la zanahoria
                 Destroy(gameObject);
-                Debug.Log("Zanahoria destruida");
+                //Debug.Log("Zanahoria destruida");
             }
         }
     }
