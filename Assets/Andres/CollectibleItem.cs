@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CollectibleItem : MonoBehaviour
 {
+    [Header("UI Notification")]
+    [SerializeField] bool notifyUI;
     [SerializeField] private string uiText;
     private bool playerInZone = false;
     private bool isCollected = false;
@@ -24,23 +26,28 @@ public class CollectibleItem : MonoBehaviour
     {
         isCollected = true;
 
-        // Notificar al sistema de UI
-        UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
-        if (uiNotificationManager != null)
+        if (notifyUI)
         {
-            uiNotificationManager.NotifyEventOnGame(uiText);
+            // Notificar al sistema de UI
+            UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
+            if (uiNotificationManager != null)
+            {
+                uiNotificationManager.NotifyEventOnGame(uiText);
+            }
         }
+
+        // Completar la misión
+        TaskManager taskManager = FindObjectOfType<TaskManager>();
+        if (taskManager != null) taskManager.CompleteTask("steal_carrot");
+
+        // Desactivar visuales
+        GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
 
         // Si existe audio, esperar mientras reproduce
         if (audioSource != null)
         {
             audioSource.Play();
-
-            // Desactivar visuales mientras suena el audio
-            GetComponent<Collider>().enabled = false;
-            if (TryGetComponent<MeshRenderer>(out var renderer))
-                renderer.enabled = false;
-
             // Destruir el objeto después de que termine el sonido
             Destroy(gameObject, audioSource.clip.length);
         }
@@ -50,7 +57,7 @@ public class CollectibleItem : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
