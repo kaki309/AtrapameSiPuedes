@@ -6,22 +6,18 @@ public class HideZone : MonoBehaviour
     private bool playerInZone = false;
     private bool isHidden = false;
     private GameObject player;
-    private PlayerMovement playerMovementScript; // Referencia al script que quieres desactivar
-
     private FPCamMovement playerCamera;
     private GameObject floatingInteractionCanvas;
 
     void Start()
     {
         floatingInteractionCanvas = gameObject.GetComponentInChildren<InteractionFloatingText>(true).gameObject;
-        Debug.Log(floatingInteractionCanvas.name);
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             player = other.transform.parent.gameObject;
-            playerMovementScript = player.GetComponent<PlayerMovement>();
             playerCamera = GameObject.FindObjectOfType<FPCamMovement>();
             playerInZone = true;
         }
@@ -51,20 +47,20 @@ public class HideZone : MonoBehaviour
     {
         isHidden = !isHidden;
 
-        HideZoneTask hideTask = player.GetComponent<HideZoneTask>();
-        if (hideTask) hideTask.completeTask();
-
         if (playerCamera != null)
         {
             playerCamera.setPositionToFollow(isHidden ? hideCamTransform : playerCamera.getOriginalCamTarget());
         }
+        PlayerMovement playerMovementScript = player.GetComponent<PlayerMovement>();
         if (playerMovementScript != null)
         {
             playerMovementScript.enabled = !isHidden;
+            player.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = !isHidden;
+            player.GetComponent<PlayerTaskManager>().completeTask("hide_zone");
         }
 
         if (floatingInteractionCanvas) floatingInteractionCanvas.SetActive(!isHidden);
 
-        player.SetActive(!isHidden); // Desactivar o activar el jugador
+        //player.SetActive(!isHidden); // Desactivar o activar el jugador
     }
 }
