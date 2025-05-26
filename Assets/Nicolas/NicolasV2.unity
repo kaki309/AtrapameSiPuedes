@@ -17881,9 +17881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e5648c406e25142881b914a029967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupNotification: {fileID: 182510672}
-  notificationText: {fileID: 523724236}
-  notificationIcon: {fileID: 0}
   carrotIcon: {fileID: 0}
   energyCarrotPrefab: {fileID: 5423923165455793451, guid: afe9f4778f64dee46b06c2c46f7b53c6,
     type: 3}
