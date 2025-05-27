@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug
         if (debugText != null) debugText.text = $"Salto cooldown:{superJumpCooldownTimer:F1} Salto tActivo:{superJumpTimer:F1} Energía:{currentEnergy:F1}%";
         // --- ANIMACIONES --- //
+        /*
         float speed = new Vector2(horizontalInput, verticalInput).magnitude;
         anim.SetFloat("Speed", speed);
 
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetTrigger("Die");
         }
+        */
     }
 
     void FixedUpdate()
