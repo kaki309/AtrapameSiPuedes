@@ -239,4 +239,22 @@ public class PlayerMovement : MonoBehaviour
             energySlider.value = currentEnergy;
         }
     }
+    // GETTERS PARA LLAMAR DESDE OTRO SCRIPT
+    public float GetSuperJumpDuration()
+    {
+        return superJumpDuration;
+    }
+    public float GetSuperJumpTimer()
+    {
+        return superJumpTimer;
+    }
+    public bool IsSuperJumpActive()
+    {
+        return isSuperJumpActive;
+    }
+    public float GetSuperJumpCooldown() => superJumpCooldown;
+    public float GetSuperJumpCooldownTimer() => superJumpCooldownTimer;
+    public bool CanActivateSuperJump() => canActivateSuperJump;
+
+
 }
