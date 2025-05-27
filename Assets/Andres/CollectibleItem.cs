@@ -42,7 +42,7 @@ public class CollectibleItem : MonoBehaviour
 
         // Desactivar visuales
         GetComponent<Collider>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
         // Si existe audio, esperar mientras reproduce
         if (audioSource != null)

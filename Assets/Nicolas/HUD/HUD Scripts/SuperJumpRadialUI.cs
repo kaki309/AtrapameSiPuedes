@@ -58,7 +58,7 @@ public class SuperJumpUIController : MonoBehaviour
             SetUIReady();
         }
 
-        // Aplicar parpadeo si está activo
+        // Aplicar parpadeo si estï¿½ activo
         if (blinking)
         {
             blinkTimer += Time.deltaTime * blinkSpeed;
