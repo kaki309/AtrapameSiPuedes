@@ -12282,8 +12282,8 @@ MonoBehaviour:
   targetTag: Player
   detectionRadius: 10
   wanderRadius: 40
-  chaseSpeed: 7
-  wanderSpeed: 2
+  chaseSpeed: 10
+  wanderSpeed: 3
 --- !u!195 &2063394297
 NavMeshAgent:
   m_ObjectHideFlags: 0
