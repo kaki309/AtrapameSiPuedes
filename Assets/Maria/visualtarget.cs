@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Controller;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RandomNavMeshMovement : MonoBehaviour
+public class visualtarget : MonoBehaviour
 {
     public string targetTag = "Player";
     public float detectionRadius = 10f;
@@ -13,12 +12,17 @@ public class RandomNavMeshMovement : MonoBehaviour
     public float chaseSpeed = 5f;
     public float wanderSpeed = 2f;
 
+    public float viewAngle = 120f; // Ángulo de visión en grados
+    public float viewDistance = 10f;
+
     private NavMeshAgent agent;
     private GameObject target;
     private Animator animator;
 
-    private float walkThreshold = 0.1f; // Velocidad mínima para activar animación de caminar
-    private float runThreshold = 3f;    // Velocidad mínima para activar animación de correr
+    private float walkThreshold = 0.1f;
+    private float runThreshold = 3f;
+
+    private bool isChasing = false;
 
     void Start()
     {
@@ -39,12 +43,21 @@ public class RandomNavMeshMovement : MonoBehaviour
     {
         if (target != null)
         {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-
-            if (distance <= detectionRadius)
+            if (CanSeeTarget())
             {
+                isChasing = true;
                 agent.speed = chaseSpeed;
                 agent.SetDestination(target.transform.position);
+            }
+            else if (isChasing)
+            {
+                // Aún persigue mientras no llega al último destino conocido
+                if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    isChasing = false;
+                    agent.speed = wanderSpeed;
+                    MoveToNewPosition();
+                }
             }
             else if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             {
@@ -54,6 +67,30 @@ public class RandomNavMeshMovement : MonoBehaviour
         }
 
         UpdateAnimation();
+    }
+
+    bool CanSeeTarget()
+    {
+        Vector3 directionToTarget = target.transform.position - transform.position;
+        float distanceToTarget = directionToTarget.magnitude;
+
+        if (distanceToTarget > viewDistance)
+            return false;
+
+        float angle = Vector3.Angle(transform.forward, directionToTarget.normalized);
+        if (angle > viewAngle / 2f)
+            return false;
+
+        // Verificar línea de visión
+        if (Physics.Raycast(transform.position + Vector3.up, directionToTarget.normalized, out RaycastHit hit, viewDistance))
+        {
+            if (hit.collider.CompareTag(targetTag))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void UpdateAnimation()
@@ -125,8 +162,8 @@ public class RandomNavMeshMovement : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             Debug.Log("Jugador alcanzado.");
-            // No detener el movimiento
+            // Aquí podrías activar daño o transición
         }
     }
+
 }
-  
