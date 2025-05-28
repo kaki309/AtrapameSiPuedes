@@ -46,6 +46,7 @@ public class HideZone : MonoBehaviour
     void ToggleHide()
     {
         isHidden = !isHidden;
+        if (floatingInteractionCanvas) floatingInteractionCanvas.SetActive(!isHidden);
 
         if (playerCamera != null)
         {
@@ -55,12 +56,9 @@ public class HideZone : MonoBehaviour
         if (playerMovementScript != null)
         {
             playerMovementScript.enabled = !isHidden;
-            player.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = !isHidden;
+            player.transform.GetComponentInChildren<SkinnedMeshRenderer>().enabled = !isHidden;
             player.GetComponent<PlayerTaskManager>().completeTask("hide_zone");
         }
 
-        if (floatingInteractionCanvas) floatingInteractionCanvas.SetActive(!isHidden);
-
-        //player.SetActive(!isHidden); // Desactivar o activar el jugador
     }
 }
