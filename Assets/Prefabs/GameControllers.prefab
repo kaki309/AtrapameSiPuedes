@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b0e89594d29e941a4049f888f0873e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPanelGroup: {fileID: 0}
+  failSlowMotionTime: 2.5
 --- !u!114 &5916634325479478381
 MonoBehaviour:
   m_ObjectHideFlags: 0

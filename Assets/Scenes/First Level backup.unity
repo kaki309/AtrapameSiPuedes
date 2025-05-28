@@ -1370,12 +1370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!225 &149234064 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 1904453932367141826, guid: 76288c1080b063740b2d3c33542dfa1f,
-    type: 3}
-  m_PrefabInstance: {fileID: 149234060}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &174270378
 GameObject:
   m_ObjectHideFlags: 0
@@ -21539,11 +21533,6 @@ PrefabInstance:
       propertyPath: uiNotificationPanel
       value: 
       objectReference: {fileID: 149234062}
-    - target: {fileID: 3844587036964944137, guid: 370a192a349a5f94ca8530cd2a9cb78c,
-        type: 3}
-      propertyPath: deathPanelGroup
-      value: 
-      objectReference: {fileID: 149234064}
     - target: {fileID: 5687838844558729589, guid: 370a192a349a5f94ca8530cd2a9cb78c,
         type: 3}
       propertyPath: m_LocalPosition.x
