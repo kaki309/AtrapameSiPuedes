@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afa22a706fd33f41bcbff3a39a72b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notifyUI: 0
-  uiText: "\xA1Cubo recogido!"
+  notifyUI: 1
+  uiText: "\xA1Misi\xF3n completada!"
 --- !u!114 &2244756075196622839
 MonoBehaviour:
   m_ObjectHideFlags: 0

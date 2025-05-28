@@ -28,7 +28,13 @@ public class DistanceTracker : MonoBehaviour
             taskCompleted = true;
             // Notificar al sistema de UI
             UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
-            if (uiNotificationManager != null) uiNotificationManager.NotifyEventOnGame("¡Haz recorrido 10 metros!");
+            //if (uiNotificationManager != null) uiNotificationManager.NotifyEventOnGame("¡Haz recorrido 10 metros!");
+
+            if (uiNotificationManager != null)
+            {
+                uiNotificationManager.QueueNotification("¡Haz recorrido 10 metros!");
+                uiNotificationManager.QueueNotification("¡Misión Completada!");
+            }
 
             // Completar la misión
             TaskManager taskManager = FindObjectOfType<TaskManager>();

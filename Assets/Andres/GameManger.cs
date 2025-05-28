@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [Header("Kill Player")]
     [SerializeField] private CanvasGroup deathPanelGroup;
     [SerializeField] private float failSlowMotionTime = 4f;
+    [Header("Hide Counter")]
+    public int hideCount = 0;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         LockAndHideCursor();
         deathPanelGroup.gameObject.SetActive(false);
+        hideCount = 0;
     }
 
     public void LockAndHideCursor()

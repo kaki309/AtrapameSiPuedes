@@ -15,7 +15,14 @@ public class HeightTask : MonoBehaviour
 
             // Notificar al sistema de UI
             UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
-            if (uiNotificationManager != null) uiNotificationManager.NotifyEventOnGame("¡Wow, estás a 3 metros del suelo!");
+            //if (uiNotificationManager != null) uiNotificationManager.NotifyEventOnGame("¡Wow, estás a 3 metros del suelo!");
+
+            if (uiNotificationManager != null)
+            {
+                uiNotificationManager.QueueNotification("¡Wow, estás a 3 metros del suelo!");
+                uiNotificationManager.QueueNotification("¡Misión Completada!");
+            }
+
 
             // Completar la misión
             TaskManager taskManager = FindObjectOfType<TaskManager>();

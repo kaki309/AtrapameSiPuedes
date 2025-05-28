@@ -57,7 +57,16 @@ public class HideZone : MonoBehaviour
         {
             playerMovementScript.enabled = !isHidden;
             player.transform.GetComponentInChildren<SkinnedMeshRenderer>().enabled = !isHidden;
-            player.GetComponent<PlayerTaskManager>().completeTask("hide_zone");
+            //player.GetComponent<PlayerTaskManager>().completeTask("hide_zone");
+
+            // Notificar al sistema de UI
+            UINotificationManager uiNotificationManager = FindObjectOfType<UINotificationManager>();
+
+            if (uiNotificationManager != null && GameManager.Instance.hideCount==0)
+            {
+                GameManager.Instance.hideCount += 1;
+                uiNotificationManager.NotifyEventOnGame("¡Misión Completada!");
+            }
         }
 
     }

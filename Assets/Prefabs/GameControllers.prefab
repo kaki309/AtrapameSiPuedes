@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathPanelGroup: {fileID: 0}
   failSlowMotionTime: 2.5
+  hideCount: 0
 --- !u!114 &5916634325479478381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +68,8 @@ MonoBehaviour:
   energyCarrotPrefab: {fileID: 5423923165455793451, guid: afe9f4778f64dee46b06c2c46f7b53c6,
     type: 3}
   spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   minSpawnTime: 1
   maxSpawnTime: 6
