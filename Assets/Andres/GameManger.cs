@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         LockAndHideCursor();
         deathPanelGroup.gameObject.SetActive(false);
         hideCount = 0;
@@ -42,6 +44,16 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void loadSceneByNumber(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+    }
+
+    public void resetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // SECUENCE FOR PLAYER DEATH

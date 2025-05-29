@@ -6,7 +6,7 @@ public class SuperJumpUIController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
 
     [Header("UI")]
-    [SerializeField] private Image superJumpImage;
+    [SerializeField] private Image spriteHolder;
     [SerializeField] private Sprite readySprite;
     [SerializeField] private Sprite activeSprite;
     [SerializeField] private Sprite cooldownSprite;
@@ -63,9 +63,9 @@ public class SuperJumpUIController : MonoBehaviour
         {
             blinkTimer += Time.deltaTime * blinkSpeed;
             float alpha = Mathf.Lerp(0.3f, 1f, Mathf.PingPong(blinkTimer, 1f));
-            Color color = superJumpImage.color;
+            Color color = spriteHolder.color;
             color.a = alpha;
-            superJumpImage.color = color;
+            spriteHolder.color = color;
         }
     }
 
@@ -76,9 +76,9 @@ public class SuperJumpUIController : MonoBehaviour
         blinking = false;
         ResetAlpha();
 
-        superJumpImage.sprite = readySprite;
-        superJumpImage.fillAmount = 1f;
-        superJumpImage.type = Image.Type.Simple;
+        spriteHolder.sprite = readySprite;
+        spriteHolder.fillAmount = 1f;
+        spriteHolder.type = Image.Type.Simple;
 
         if (currentState == SuperJumpState.Cooldown)
             PlaySound(soundReady);
@@ -93,17 +93,17 @@ public class SuperJumpUIController : MonoBehaviour
             blinking = true;
             blinkTimer = 0f;
 
-            superJumpImage.sprite = activeSprite;
-            superJumpImage.type = Image.Type.Filled;
-            superJumpImage.fillMethod = Image.FillMethod.Radial360;
-            superJumpImage.fillOrigin = (int)Image.Origin360.Top; // Desde las 12
-            superJumpImage.fillClockwise = true;
+            spriteHolder.sprite = activeSprite;
+            spriteHolder.type = Image.Type.Filled;
+            spriteHolder.fillMethod = Image.FillMethod.Radial360;
+            spriteHolder.fillOrigin = (int)Image.Origin360.Top; // Desde las 12
+            spriteHolder.fillClockwise = true;
 
             PlaySound(soundActivated);
             currentState = SuperJumpState.Active;
         }
 
-        superJumpImage.fillAmount = fill;
+        spriteHolder.fillAmount = fill;
     }
 
     private void SetUICooldown(float fill)
@@ -113,10 +113,10 @@ public class SuperJumpUIController : MonoBehaviour
             blinking = false;
             ResetAlpha();
 
-            superJumpImage.sprite = cooldownSprite;
-            superJumpImage.type = Image.Type.Filled;
-            superJumpImage.fillMethod = Image.FillMethod.Vertical;
-            superJumpImage.fillOrigin = (int)Image.OriginVertical.Bottom;
+            spriteHolder.sprite = cooldownSprite;
+            spriteHolder.type = Image.Type.Filled;
+            spriteHolder.fillMethod = Image.FillMethod.Vertical;
+            spriteHolder.fillOrigin = (int)Image.OriginVertical.Bottom;
 
             if (currentState == SuperJumpState.Active)
                 PlaySound(soundDeactivated);
@@ -124,14 +124,14 @@ public class SuperJumpUIController : MonoBehaviour
             currentState = SuperJumpState.Cooldown;
         }
 
-        superJumpImage.fillAmount = fill;
+        spriteHolder.fillAmount = fill;
     }
 
     private void ResetAlpha()
     {
-        Color color = superJumpImage.color;
+        Color color = spriteHolder.color;
         color.a = 1f;
-        superJumpImage.color = color;
+        spriteHolder.color = color;
     }
 
     private void PlaySound(AudioClip clip)

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Nicolas/MENU START.unity
+    path: Assets/Scenes/MENU START.unity
     guid: 96b9ef273c3ec1f43b2c8651d89a6178
   - enabled: 1
     path: Assets/Scenes/First Level.unity

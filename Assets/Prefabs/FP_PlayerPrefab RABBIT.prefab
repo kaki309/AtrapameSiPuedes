@@ -387,7 +387,7 @@ MonoBehaviour:
   debugText: {fileID: 0}
   moveSpeed: 9
   groundDrag: 8
-  jumpForce: 12
+  jumpForce: 16
   jumpCooldown: 0.25
   airMultiplier: 0.4
   sprintMultiplier: 1.5
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984ef30e6f9cc1d49af10997a4c13211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightThreshold: 9
+  heightThreshold: 15
 --- !u!114 &4709089970431855613
 MonoBehaviour:
   m_ObjectHideFlags: 0

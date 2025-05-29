@@ -71,8 +71,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  minSpawnTime: 1
-  maxSpawnTime: 6
+  minSpawnTime: 6
+  maxSpawnTime: 15
 --- !u!114 &2598679798675697080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,10 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
-  superJumpImage: {fileID: 0}
-  readySprite: {fileID: 0}
-  activeSprite: {fileID: 0}
-  cooldownSprite: {fileID: 0}
+  spriteHolder: {fileID: 0}
+  readySprite: {fileID: 21300000, guid: 6842e1366e62e7e409192426a101bf00, type: 3}
+  activeSprite: {fileID: 21300000, guid: 3c4e1ad829c569142bb55f2bf32140b6, type: 3}
+  cooldownSprite: {fileID: 21300000, guid: 6a72f088546c28a46aadca09de4b42c6, type: 3}
   audioSource: {fileID: 0}
   soundReady: {fileID: 0}
   soundActivated: {fileID: 0}
